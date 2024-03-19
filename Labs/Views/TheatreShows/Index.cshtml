@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Labs.Models.TheatreShow>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<div class="container">
+    <div class="text-center mb-4">
+        <a asp-action="Create" class="btn btn-success">Add New</a>
+        <a asp-controller="Tickets" asp-action="Create" class="btn btn-primary">Buy Ticket</a>
+    </div>
+
+    <h1 class="text-center mb-4">Shows</h1>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3">
+                <div class="card mb-4 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                        <p class="card-text">
+                            <strong>Date:</strong> @Html.DisplayFor(modelItem => item.ShowDate)<br />
+                            <strong>Description:</strong> @Html.DisplayFor(modelItem => item.Description)<br />
+                            <strong>Place:</strong> @Html.DisplayFor(modelItem => item.Place)
+                        </p>
+                        <div class="text-center">
+                            <div class="btn-group">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
